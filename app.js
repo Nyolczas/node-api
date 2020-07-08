@@ -1,10 +1,14 @@
 const express = require('express');
-
 const app = express();
+const morgan = require("morgan");
 
-app.get('/', (req, res) => {
-    res.send("punci");
-});
+// bring in routes
+const { getPosts } = require('./routes/post');
+
+// middleware 
+app.use(morgan('dev'));
+
+app.get('/', getPosts);
 
 const port = 8080;
 
